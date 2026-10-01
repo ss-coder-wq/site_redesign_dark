@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ShopLaptop — Головна</title>
+<link href="assets/fonts/fonts.css" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0907;
+    --bg-2: #0f0d0a;
+    --surface: #15120e;
+    --surface-2: #1c1813;
+    --surface-3: #241f18;
+    --line: #2b251c;
+    --line-2: #3a3226;
+    --text: #f4eee2;
+    --text-2: #cfc6b4;
+    --muted: #9a907d;
+    --muted-2: #756c5c;
+    --gold: #d4af37;
+    --gold-hi: #f5d77a;
+    --gold-lo: #9c7a26;
+    --gold-ink: #1a1406;
+    --gold-grad: linear-gradient(135deg, #f8e391 0%, #e2bd4f 38%, #c69a2c 68%, #f1d27a 100%);
+    --gold-text: linear-gradient(100deg, #fff1b8 0%, #f0cc63 30%, #c99b2d 60%, #f7de8c 100%);
+    --ivory: #f4ecd8;
+    --green: #8fce7a;
+    --red: #ef7b5f;
+    --sans: "IBM Plex Sans", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --display: "Unbounded", "IBM Plex Sans", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { color-scheme: dark; scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); -webkit-font-smoothing: antialiased; min-width: 1280px; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; }
+  img { display: block; }
+  .wrap { max-width: 1320px; margin: 0 auto; padding: 0 40px; }
+  .mono { font-family: var(--mono); }
+  .gold-text { background: var(--gold-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* buttons */
+  .btn { display: inline-flex; align-items: center; gap: 10px; border: 0; border-radius: 8px; font-weight: 600; font-size: 15px; padding: 15px 26px; transition: transform .2s, box-shadow .2s, background .2s, color .2s; white-space: nowrap; }
+  .btn-gold { background: var(--gold-grad); background-size: 200% 200%; color: var(--gold-ink); box-shadow: 0 8px 24px -8px rgba(212,175,55,.55), inset 0 1px 0 rgba(255,255,255,.45); }
+  .btn-gold:hover { transform: translateY(-2px); background-position: 100% 0; box-shadow: 0 14px 34px -10px rgba(212,175,55,.75), inset 0 1px 0 rgba(255,255,255,.45); color: var(--gold-ink); }
+  .btn-ghost { border: 1.5px solid var(--line-2); color: var(--text); background: rgba(255,255,255,.02); }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold-hi); }
+  .btn-sm { padding: 9px 15px; font-size: 13.5px; border-radius: 6px; }
+
+  /* ===== HEADER ===== */
+  .topbar { background: #060504; border-bottom: 1px solid #1b1712; font-size: 13px; color: var(--text-2); }
+  .topbar .wrap { height: 42px; display: flex; align-items: center; gap: 26px; }
+  .topbar .phone { font-family: var(--mono); font-weight: 500; color: var(--text); }
+  .topbar .msgr { display: flex; gap: 8px; }
+  .topbar .msgr a { border: 1px solid var(--line-2); border-radius: 4px; padding: 3px 9px; font-size: 12px; transition: .2s; }
+  .topbar .msgr a:hover { border-color: var(--gold); color: var(--gold-hi); }
+  .topbar .note { margin-left: auto; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .topbar .note b { color: var(--gold); font-weight: 500; }
+  .topbar .tl { color: var(--text-2); transition: color .2s; }
+  .topbar .tl:hover { color: var(--gold-hi); }
+
+  .mainbar { background: var(--bg-2); border-bottom: 1px solid var(--line); }
+  .mainbar .wrap { padding-top: 22px; padding-bottom: 22px; display: flex; align-items: center; gap: 32px; }
+  .logo { display: flex; flex-direction: column; gap: 4px; }
+  .logo-word { font-family: var(--display); font-size: 22px; font-weight: 700; letter-spacing: -0.01em; line-height: 1; }
+  .logo-sub { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; color: var(--muted); text-transform: uppercase; }
+  .search { flex: 1; display: flex; height: 50px; border: 1.5px solid var(--line-2); border-radius: 8px; overflow: hidden; transition: border-color .2s, box-shadow .2s; background: var(--surface); }
+  .search:focus-within { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(212,175,55,.12); }
+  .search .cat { display: flex; align-items: center; gap: 8px; padding: 0 16px; font-size: 14px; color: var(--text-2); border-right: 1px solid var(--line); background: var(--surface-2); white-space: nowrap; }
+  .search input { flex: 1; border: 0; outline: none; padding: 0 16px; font: inherit; font-size: 14.5px; background: transparent; color: var(--text); }
+  .search input::placeholder { color: var(--muted-2); }
+  .search button { border: 0; background: var(--gold-grad); color: var(--gold-ink); padding: 0 28px; font-size: 14.5px; font-weight: 700; }
+  .hdr-actions { display: flex; align-items: center; gap: 22px; }
+  .icon-link { position: relative; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--line); color: var(--text-2); transition: .2s; }
+  .icon-link:hover { border-color: var(--gold); color: var(--gold-hi); }
+  .icon-link .badge { position: absolute; top: -6px; right: -6px; min-width: 18px; height: 18px; border-radius: 9px; background: var(--gold); color: var(--gold-ink); font: 700 11px/18px var(--mono); text-align: center; padding: 0 4px; }
+  .cart { display: flex; flex-direction: column; font-size: 12.5px; color: var(--muted); }
+  .cart b { font-family: var(--mono); font-size: 15px; color: var(--text); font-weight: 600; }
+
+  .navbar { background: var(--bg-2); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px); background: rgba(15,13,10,.92); }
+  .navbar .wrap { display: flex; gap: 24px; font-size: 14px; }
+  .navbar a { padding: 15px 0; white-space: nowrap; color: var(--text-2); border-bottom: 2px solid transparent; transition: .2s; }
+  .navbar a:hover { color: var(--gold-hi); }
+  .navbar a.active { color: var(--text); font-weight: 600; border-bottom-color: var(--gold); }
+  .navbar a.push { margin-left: auto; }
+  .navbar a.sale { color: var(--gold-hi); font-weight: 600; display: flex; align-items: center; gap: 6px; }
+
+  /* ===== HERO ===== */
+  .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(760px 520px at 74% 50%, rgba(212,175,55,.20), transparent 62%),
+      radial-gradient(600px 400px at 8% 100%, rgba(156,122,38,.10), transparent 60%),
+      linear-gradient(180deg, #0a0907, #0d0b08); }
+  .hero::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: linear-gradient(rgba(212,175,55,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,.06) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 80% at 70% 50%, #000 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 80% at 70% 50%, #000 20%, transparent 75%); }
+  .hero-inner { position: relative; height: 620px; }
+  .slide { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 620px; align-items: center; gap: 20px; opacity: 0; visibility: hidden; transition: opacity .7s ease, visibility .7s; }
+  .slide.active { opacity: 1; visibility: visible; }
+  .slide .copy > * { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
+  .slide.active .copy > * { opacity: 1; transform: none; }
+  .slide.active .copy > *:nth-child(2) { transition-delay: .08s; }
+  .slide.active .copy > *:nth-child(3) { transition-delay: .16s; }
+  .slide.active .copy > *:nth-child(4) { transition-delay: .24s; }
+  .slide.active .copy > *:nth-child(5) { transition-delay: .32s; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+  .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(212,175,55,.18); }
+  .hero h1 { margin-top: 22px; font-family: var(--display); font-size: 58px; line-height: 1.04; letter-spacing: -0.025em; font-weight: 700; }
+  .hero .model { margin-top: 22px; font-size: 16.5px; color: var(--text-2); line-height: 1.55; max-width: 48ch; }
+  .hero .model b { color: var(--text); font-weight: 600; }
+  .hero .buyrow { margin-top: 34px; display: flex; align-items: center; gap: 28px; }
+  .hero .price { font-family: var(--mono); font-size: 36px; font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+  .hero .price small { display: block; font-family: var(--sans); font-size: 13px; letter-spacing: 0; color: var(--muted); font-weight: 400; margin-top: 8px; }
+  .hero .ctas { display: flex; gap: 12px; }
+
+  .stage { position: relative; width: 620px; height: 580px; display: grid; place-items: center; }
+  .ring { position: absolute; border-radius: 50%; border: 1px solid rgba(212,175,55,.22); }
+  .ring.r1 { width: 540px; height: 540px; }
+  .ring.r2 { width: 460px; height: 460px; border-color: rgba(212,175,55,.12); }
+  .orbit { position: absolute; width: 540px; height: 540px; animation: spin 40s linear infinite; }
+  .orbit::after { content: ""; position: absolute; top: -5px; left: 50%; width: 10px; height: 10px; border-radius: 50%; background: var(--gold-hi); box-shadow: 0 0 18px 4px rgba(245,215,122,.7); }
+  .dash { position: absolute; width: 500px; height: 500px; animation: spin 70s linear infinite reverse; }
+  .disc { position: relative; width: 380px; height: 380px; border-radius: 50%; display: grid; place-items: center; overflow: hidden;
+    background: radial-gradient(circle at 34% 28%, #fffdf6 0%, #f3e8cd 50%, #d8bf82 100%);
+    box-shadow: 0 0 0 1px rgba(245,215,122,.7), 0 0 0 10px rgba(212,175,55,.07), 0 40px 90px -20px rgba(212,175,55,.45), inset 0 -24px 50px rgba(120,88,20,.28); }
+  .disc img { max-width: 300px; max-height: 250px; object-fit: contain; mix-blend-mode: multiply; transform: translateY(6px); }
+  .slide.active .disc img { animation: rise 1s cubic-bezier(.2,.7,.2,1) both; }
+  .stamp { position: absolute; top: 36px; right: 70px; width: 138px; height: 138px; }
+  .stamp svg { width: 100%; height: 100%; animation: spin 18s linear infinite; }
+  .stamp .core { position: absolute; inset: 34px; border-radius: 50%; background: var(--gold-grad); display: grid; place-items: center; color: var(--gold-ink); box-shadow: 0 10px 30px -6px rgba(212,175,55,.6); }
+  .chip { position: absolute; display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-radius: 10px; background: rgba(21,18,14,.82); border: 1px solid rgba(212,175,55,.35); backdrop-filter: blur(8px); box-shadow: 0 14px 30px -12px rgba(0,0,0,.8); animation: float 6s ease-in-out infinite; }
+  .chip span { font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .chip b { font-family: var(--mono); font-size: 15px; font-weight: 600; color: var(--gold-hi); }
+  .chip.c1 { left: 20px; top: 150px; }
+  .chip.c2 { right: 10px; top: 300px; animation-delay: -2s; }
+  .chip.c3 { left: 70px; bottom: 70px; animation-delay: -4s; }
+
+  .hero-ctrl { position: absolute; left: 40px; right: 40px; bottom: 26px; display: flex; align-items: center; gap: 14px; z-index: 5; }
+  .tab { flex: 0 0 210px; text-align: left; background: none; border: 0; color: var(--muted); padding: 0; }
+  .tab .bar { height: 2px; background: var(--line-2); border-radius: 2px; overflow: hidden; }
+  .tab .bar i { display: block; height: 100%; width: 0; background: var(--gold-grad); }
+  .tab.active .bar i { animation: fill var(--dur, 7s) linear forwards; }
+  .tab .lbl { display: flex; gap: 10px; margin-top: 10px; font-size: 13px; transition: color .2s; }
+  .tab .lbl em { font-style: normal; font-family: var(--mono); color: var(--muted-2); }
+  .tab.active .lbl, .tab:hover .lbl { color: var(--text); }
+  .tab.active .lbl em { color: var(--gold); }
+  .arrows { margin-left: auto; display: flex; gap: 8px; }
+  .arrows button { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-2); background: rgba(21,18,14,.6); color: var(--text); display: grid; place-items: center; transition: .2s; }
+  .arrows button:hover { border-color: var(--gold); color: var(--gold-hi); }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  @keyframes rise { from { opacity: 0; transform: translateY(40px) scale(.94); } to { opacity: 1; transform: translateY(6px) scale(1); } }
+  @keyframes fill { to { width: 100%; } }
+
+  /* quick pick strip */
+  .quick { border-bottom: 1px solid var(--line); background: var(--bg-2); }
+  .quick .wrap { display: flex; align-items: center; gap: 28px; padding-top: 20px; padding-bottom: 20px; }
+  .quick .ttl { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill { font-family: var(--mono); font-size: 13px; padding: 8px 13px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--text-2); background: var(--surface); transition: .2s; }
+  .pill:hover { border-color: var(--gold); color: var(--gold-hi); background: rgba(212,175,55,.06); }
+  .stats { margin-left: auto; display: flex; gap: 34px; }
+  .stat b { display: block; font-family: var(--mono); font-size: 22px; font-weight: 600; letter-spacing: -0.02em; color: var(--gold-hi); line-height: 1; }
+  .stat span { font-size: 12.5px; color: var(--muted); }
+
+  /* section heads */
+  main { padding-bottom: 20px; }
+  .sec { margin-top: 72px; }
+  .sec-head { display: flex; align-items: flex-end; gap: 22px; margin-bottom: 26px; }
+  .sec-head .kicker { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+  .sec-head h2 { font-family: var(--display); font-size: 32px; font-weight: 700; letter-spacing: -0.02em; margin-top: 8px; line-height: 1.1; }
+  .sec-head .more { margin-left: auto; font-size: 14.5px; font-weight: 600; color: var(--gold-hi); display: inline-flex; align-items: center; gap: 8px; padding-bottom: 4px; }
+  .sec-head .more:hover { color: #fff3c4; }
+
+  /* ===== DEALS ===== */
+  .deals-head { align-items: center; }
+  .timer { display: flex; align-items: center; gap: 14px; margin-left: auto; padding: 10px 16px 10px 18px; border: 1px solid rgba(212,175,55,.35); border-radius: 12px; background: linear-gradient(90deg, rgba(212,175,55,.08), rgba(212,175,55,.02)); }
+  .timer .t-lbl { font-size: 12.5px; color: var(--text-2); line-height: 1.3; }
+  .timer .cells { display: flex; gap: 6px; align-items: center; }
+  .timer .cell { min-width: 50px; text-align: center; background: #070605; border: 1px solid var(--line-2); border-radius: 8px; padding: 6px 6px 5px; }
+  .timer .cell b { display: block; font-family: var(--mono); font-size: 20px; font-weight: 600; color: var(--gold-hi); line-height: 1.1; }
+  .timer .cell span { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+  .timer .sep { color: var(--gold-lo); font-family: var(--mono); font-weight: 600; }
+
+  .deals { display: grid; grid-template-columns: 1.15fr 1fr; gap: 20px; }
+  .deal-main { position: relative; overflow: hidden; border-radius: 16px; padding: 34px; display: flex; flex-direction: column;
+    background: radial-gradient(500px 360px at 80% 20%, rgba(212,175,55,.22), transparent 65%), linear-gradient(160deg, #1f1a12, #0f0d0a 70%);
+    border: 1px solid rgba(212,175,55,.35); }
+  .ribbon { position: absolute; top: 30px; right: -54px; transform: rotate(45deg); width: 220px; text-align: center; background: var(--gold-grad); color: var(--gold-ink); font: 700 12px/1 var(--mono); letter-spacing: .12em; padding: 9px 0; box-shadow: 0 6px 18px rgba(0,0,0,.4); }
+  .deal-main .top { display: flex; gap: 10px; align-items: center; }
+  .pct { position: relative; display: inline-flex; align-items: center; font: 700 15px/1 var(--mono); color: var(--gold-ink); background: var(--gold-grad); padding: 8px 12px 8px 20px; border-radius: 4px 6px 6px 4px; clip-path: polygon(10px 0, 100% 0, 100% 100%, 10px 100%, 0 50%); }
+  .pct::before { content: ""; position: absolute; left: 9px; top: 50%; width: 5px; height: 5px; margin-top: -2.5px; border-radius: 50%; background: #1a1406; }
+  .pct.big { font-size: 22px; padding: 11px 16px 11px 26px; clip-path: polygon(14px 0, 100% 0, 100% 100%, 14px 100%, 0 50%); }
+  .pct.big::before { left: 12px; width: 7px; height: 7px; margin-top: -3.5px; }
+  .instock { font-size: 13px; color: var(--green); font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+  .instock::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+  .deal-main .img { margin: 22px 0 20px; height: 250px; border-radius: 12px; display: grid; place-items: center; background: radial-gradient(circle at 50% 40%, #fffaf0, var(--ivory) 60%, #e6d6ad); }
+  .deal-main .img img { max-height: 225px; max-width: 86%; object-fit: contain; mix-blend-mode: multiply; transition: transform .5s; }
+  .deal-main:hover .img img { transform: scale(1.05) rotate(-1deg); }
+  .deal-main h3 { font-size: 21px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
+  .specs { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .specs span { font-family: var(--mono); font-size: 11.5px; padding: 4px 8px; background: var(--surface-3); border: 1px solid var(--line); border-radius: 4px; color: var(--text-2); }
+  .deal-main .pricing { margin-top: auto; padding-top: 22px; display: flex; align-items: flex-end; gap: 20px; }
+  .old { font-family: var(--mono); font-size: 15px; color: var(--muted-2); text-decoration: line-through; text-decoration-color: var(--red); }
+  .new { font-family: var(--mono); font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+  .deal-main .new { font-size: 38px; }
+  .save { display: inline-block; margin-top: 8px; font-size: 12.5px; color: var(--gold-hi); background: rgba(212,175,55,.1); border: 1px dashed rgba(212,175,55,.45); padding: 3px 8px; border-radius: 4px; }
+  .stock { margin-top: 18px; }
+  .stock .row { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--muted); margin-bottom: 7px; }
+  .stock .row b { color: var(--text); font-weight: 600; }
+  .stock .track { height: 6px; border-radius: 3px; background: var(--surface-3); overflow: hidden; }
+  .stock .track i { display: block; height: 100%; border-radius: 3px; background: var(--gold-grad); }
+
+  .deal-list { display: grid; grid-template-rows: repeat(3, 1fr); gap: 20px; }
+  .deal { position: relative; display: grid; grid-template-columns: 170px 1fr; gap: 20px; padding: 18px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); transition: border-color .25s, transform .25s, box-shadow .25s; }
+  .deal:hover { border-color: rgba(212,175,55,.55); transform: translateX(-4px); box-shadow: 0 18px 40px -22px rgba(212,175,55,.45); }
+  .deal .img { border-radius: 10px; display: grid; place-items: center; background: var(--ivory); position: relative; }
+  .deal .img img { max-height: 118px; max-width: 88%; object-fit: contain; mix-blend-mode: multiply; }
+  .deal .img .pct { position: absolute; top: 8px; left: 8px; font-size: 12px; padding: 5px 8px 5px 15px; }
+  .deal .body { display: flex; flex-direction: column; min-width: 0; }
+  .deal .brand { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; color: var(--muted); text-transform: uppercase; }
+  .deal h4 { margin-top: 4px; font-size: 14.5px; line-height: 1.35; font-weight: 600; }
+  .deal .bottom { margin-top: auto; padding-top: 10px; display: flex; align-items: flex-end; gap: 14px; }
+  .deal .new { font-size: 21px; }
+  .deal .bottom .btn { margin-left: auto; }
+  .deal .stock { margin-top: 10px; }
+  .deal .stock .track { height: 4px; }
+
+  /* ===== HITS ===== */
+  .hits-sec { position: relative; margin-top: 80px; padding: 56px 0 60px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    background: radial-gradient(900px 300px at 50% 0%, rgba(212,175,55,.10), transparent 70%), #0c0a08; }
+  .hits { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .hit { position: relative; border-radius: 16px; padding: 20px; background: linear-gradient(180deg, var(--surface-2), var(--surface)); border: 1px solid var(--line); display: flex; flex-direction: column; overflow: hidden; transition: transform .3s, border-color .3s, box-shadow .3s; }
+  .hit:hover { transform: translateY(-6px); border-color: rgba(212,175,55,.6); box-shadow: 0 26px 50px -24px rgba(212,175,55,.5); }
+  .hit .rank { position: absolute; top: -18px; right: 8px; font-family: var(--display); font-size: 120px; font-weight: 800; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px rgba(212,175,55,.35); pointer-events: none; transition: -webkit-text-stroke-color .3s; z-index: 0; }
+  .hit:hover .rank { -webkit-text-stroke-color: rgba(245,215,122,.8); }
+  .hit.first { border-color: rgba(212,175,55,.5); background: radial-gradient(260px 200px at 80% 0%, rgba(212,175,55,.2), transparent 70%), linear-gradient(180deg, #221c13, var(--surface)); }
+  .hit.first .rank { -webkit-text-stroke: 0; background: var(--gold-text); -webkit-background-clip: text; background-clip: text; opacity: .9; }
+  .hit .tagrow { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; }
+  .fire { display: inline-flex; align-items: center; gap: 6px; font: 600 11px/1 var(--mono); letter-spacing: .08em; color: var(--gold-ink); background: var(--gold-grad); padding: 6px 9px; border-radius: 4px; }
+  .hit .img { position: relative; z-index: 1; margin: 44px 0 16px; height: 168px; border-radius: 10px; display: grid; place-items: center; background: var(--ivory); }
+  .hit .img img { max-height: 148px; max-width: 90%; object-fit: contain; mix-blend-mode: multiply; transition: transform .45s; }
+  .hit:hover .img img { transform: scale(1.06); }
+  .hit h4 { position: relative; z-index: 1; font-size: 15px; line-height: 1.35; font-weight: 600; }
+  .rating { margin-top: 10px; display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); }
+  .stars { display: flex; gap: 2px; color: var(--gold); }
+  .sold { margin-top: 8px; font-size: 12.5px; color: var(--text-2); display: flex; align-items: center; gap: 6px; }
+  .sold b { color: var(--gold-hi); font-family: var(--mono); }
+  .hit .bottom { margin-top: auto; padding-top: 18px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .hit .new { font-size: 20px; }
+  .cart-btn { width: 42px; height: 42px; border-radius: 10px; border: 1.5px solid var(--gold); display: grid; place-items: center; color: var(--gold-hi); background: transparent; transition: .2s; }
+  .cart-btn:hover { background: var(--gold-grad); color: var(--gold-ink); border-color: transparent; }
+
+  /* ===== NEW ARRIVALS ===== */
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; transition: border-color .25s, transform .25s; }
+  .card:hover { border-color: rgba(212,175,55,.55); transform: translateY(-3px); }
+  .card .img { position: relative; height: 168px; display: grid; place-items: center; background: var(--ivory); border-radius: 8px; }
+  .card .img img { max-height: 150px; max-width: 92%; object-fit: contain; mix-blend-mode: multiply; }
+  .new-tag { position: absolute; top: 8px; left: 8px; font: 600 10.5px/1 var(--mono); letter-spacing: .08em; padding: 5px 7px; border-radius: 4px; background: #0a0907; color: var(--gold-hi); border: 1px solid rgba(212,175,55,.5); }
+  .card .brand { margin-top: 14px; font-family: var(--mono); font-size: 11px; letter-spacing: .06em; color: var(--muted); text-transform: uppercase; }
+  .card h4 { margin-top: 6px; font-size: 15px; line-height: 1.35; font-weight: 600; }
+  .card .specs { margin-top: 12px; }
+  .card .bottom { margin-top: auto; padding-top: 18px; display: flex; align-items: center; justify-content: space-between; }
+  .card .new { font-size: 19px; }
+  .btn-line { border: 1.5px solid var(--gold); color: var(--text); padding: 8px 14px; border-radius: 6px; font-size: 13.5px; font-weight: 600; transition: .2s; background: none; }
+  .btn-line:hover { background: var(--gold-grad); color: var(--gold-ink); border-color: transparent; }
+
+  /* ===== COMPARE ===== */
+  .compare { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .compare .head { padding: 26px 32px 20px; display: flex; align-items: baseline; gap: 16px; }
+  .compare .head h3 { font-family: var(--display); font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+  .compare .head span { font-size: 14px; color: var(--muted); }
+  .ctable { display: grid; grid-template-columns: 220px repeat(3, 1fr); border-top: 1px solid var(--line); font-size: 14.5px; }
+  .ctable > div { padding: 14px 20px; border-bottom: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .ctable > div:nth-child(4n+1) { padding-left: 32px; color: var(--muted); border-left: 0; }
+  .ctable .h { font-weight: 600; }
+  .ctable .best { background: linear-gradient(180deg, rgba(212,175,55,.09), rgba(212,175,55,.03)); }
+  .ctable .m { font-family: var(--mono); }
+  .ctable .p { font-family: var(--mono); font-size: 17px; font-weight: 600; border-bottom: 0; }
+  .ctable .p.best { color: var(--gold-hi); }
+  .ctable .last { border-bottom: 0; }
+  .crown { display: inline-flex; align-items: center; gap: 6px; margin-left: 8px; font: 600 10.5px/1 var(--mono); color: var(--gold); letter-spacing: .06em; }
+
+  /* ===== CATEGORIES ===== */
+  .cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .cat-link { position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; font-size: 16px; font-weight: 600; transition: border-color .25s, color .25s; }
+  .cat-link::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(212,175,55,.12), transparent 60%); transform: translateX(-100%); transition: transform .4s; }
+  .cat-link:hover { border-color: rgba(212,175,55,.55); color: var(--gold-hi); }
+  .cat-link:hover::after { transform: none; }
+  .cat-link span { font-family: var(--mono); font-size: 13px; color: var(--muted-2); font-weight: 400; }
+
+  /* ===== DELIVERY ===== */
+  .delivery { display: grid; grid-template-columns: repeat(3, 1fr) 1.15fr; gap: 16px; }
+  .dcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+  .dcard .ic { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: rgba(212,175,55,.1); border: 1px solid rgba(212,175,55,.3); color: var(--gold-hi); }
+  .dcard h4 { margin-top: 16px; font-size: 16.5px; font-weight: 600; }
+  .dcard p, .dcard li { font-size: 14px; line-height: 1.55; color: var(--text-2); }
+  .dcard p { margin-top: 8px; }
+  .dcard ul { margin-top: 10px; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .dcard li { display: flex; gap: 8px; }
+  .dcard li::before { content: ""; flex: 0 0 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: var(--gold); }
+  .notice { position: relative; border-radius: 14px; padding: 24px 24px 22px; border: 1px solid rgba(212,175,55,.5); background: repeating-linear-gradient(135deg, rgba(212,175,55,.05) 0 12px, transparent 12px 24px), linear-gradient(160deg, #221b10, #13100b); }
+  .notice .lbl { display: inline-flex; align-items: center; gap: 8px; font: 600 12px/1 var(--mono); letter-spacing: .12em; color: var(--gold-ink); background: var(--gold-grad); padding: 7px 10px; border-radius: 4px; }
+  .notice h4 { margin-top: 16px; font-size: 16.5px; font-weight: 600; }
+  .notice p { margin-top: 8px; font-size: 14px; line-height: 1.55; color: var(--text-2); }
+  .notice p b { color: var(--gold-hi); font-family: var(--mono); font-weight: 600; }
+  .notice a { display: inline-flex; margin-top: 14px; font-size: 13.5px; font-weight: 600; color: var(--gold-hi); gap: 6px; align-items: center; }
+
+  /* ===== CTA ===== */
+  .cta { position: relative; overflow: hidden; border-radius: 16px; padding: 42px 44px; display: grid; grid-template-columns: 1fr 360px; gap: 48px; align-items: center; border: 1px solid rgba(212,175,55,.35);
+    background: radial-gradient(600px 300px at 100% 0%, rgba(212,175,55,.22), transparent 65%), linear-gradient(135deg, #17130d, #0c0a07); }
+  .cta h2 { font-family: var(--display); font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+  .cta p { margin-top: 12px; color: var(--text-2); font-size: 16px; line-height: 1.55; max-width: 60ch; }
+  .cta .row { margin-top: 24px; display: flex; gap: 10px; }
+  .cta .side { border-left: 1px solid var(--line-2); padding-left: 40px; }
+  .cta .ph { font-family: var(--mono); font-size: 25px; font-weight: 500; letter-spacing: -0.01em; }
+  .cta .hrs { color: var(--muted); font-size: 14px; margin-top: 8px; }
+  .cta .side .btn { margin-top: 18px; }
+
+  /* ===== FOOTER ===== */
+  footer { margin-top: 80px; background: #070605; border-top: 1px solid var(--line); }
+  footer .cols { padding-top: 48px; padding-bottom: 44px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+  footer p { margin-top: 14px; font-size: 14px; line-height: 1.6; color: var(--muted); max-width: 34ch; }
+  footer .col { display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+  footer .col .t { font-weight: 600; margin-bottom: 4px; color: var(--gold); font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+  footer .col a { color: var(--text-2); transition: color .2s; }
+  footer .col a:hover { color: var(--gold-hi); }
+  footer .copy { border-top: 1px solid #1b1712; padding-top: 20px; padding-bottom: 32px; font-size: 13px; color: var(--muted-2); display: flex; justify-content: space-between; }
+
+  /* ===== AI SUPPORT WIDGET ===== */
+  .ai-fab { position: fixed; right: 28px; bottom: 28px; z-index: 200; display: flex; align-items: center; gap: 12px; }
+  .ai-hint { background: var(--surface-2); border: 1px solid rgba(212,175,55,.4); color: var(--text); font-size: 13.5px; padding: 10px 14px; border-radius: 12px 12px 4px 12px; box-shadow: 0 16px 40px -16px rgba(0,0,0,.9); opacity: 0; transform: translateX(10px); transition: .4s; pointer-events: none; max-width: 230px; line-height: 1.4; }
+  .ai-hint.show { opacity: 1; transform: none; pointer-events: auto; }
+  .ai-hint b { color: var(--gold-hi); }
+  .ai-btn { position: relative; width: 64px; height: 64px; border-radius: 50%; border: 0; background: var(--gold-grad); color: var(--gold-ink); display: grid; place-items: center; box-shadow: 0 14px 36px -8px rgba(212,175,55,.7), inset 0 1px 0 rgba(255,255,255,.5); transition: transform .25s; }
+  .ai-btn:hover { transform: scale(1.06) rotate(-6deg); }
+  .ai-btn::before, .ai-btn::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(212,175,55,.6); animation: pulse 2.6s ease-out infinite; }
+  .ai-btn::after { animation-delay: 1.3s; }
+  .ai-btn .i-close { display: none; }
+  .ai-btn .eyes { transform-box: fill-box; transform-origin: center; animation: blink 4.5s infinite; }
+  @keyframes blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+  .ai-open .ai-btn .i-chat { display: none; }
+  .ai-open .ai-btn .i-close { display: block; }
+  .ai-open .ai-btn::before, .ai-open .ai-btn::after { animation: none; opacity: 0; }
+  .ai-open .ai-hint { opacity: 0 !important; pointer-events: none; }
+  .ai-dot { position: absolute; top: 3px; right: 3px; width: 14px; height: 14px; border-radius: 50%; background: var(--green); border: 2.5px solid #0a0907; }
+  @keyframes pulse { from { transform: scale(1); opacity: .9; } to { transform: scale(1.7); opacity: 0; } }
+
+  .ai-panel { position: fixed; right: 28px; bottom: 108px; z-index: 199; width: 390px; height: 580px; display: flex; flex-direction: column; border-radius: 18px; overflow: hidden; background: #100e0b; border: 1px solid rgba(212,175,55,.4); box-shadow: 0 40px 90px -30px rgba(0,0,0,.95), 0 0 0 1px rgba(0,0,0,.6);
+    opacity: 0; transform: translateY(16px) scale(.97); transform-origin: bottom right; pointer-events: none; transition: opacity .25s, transform .3s cubic-bezier(.2,.8,.2,1); }
+  .ai-open .ai-panel { opacity: 1; transform: none; pointer-events: auto; }
+  .ai-head { padding: 18px 18px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--line); background: radial-gradient(300px 120px at 0% 0%, rgba(212,175,55,.22), transparent 70%), #15120e; }
+  .ai-ava { position: relative; width: 42px; height: 42px; border-radius: 12px; background: var(--gold-grad); color: var(--gold-ink); display: grid; place-items: center; flex: none; }
+  .ai-head .nm { font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+  .beta { font: 600 10px/1 var(--mono); letter-spacing: .08em; color: var(--gold-hi); border: 1px solid rgba(212,175,55,.5); padding: 3px 5px; border-radius: 4px; }
+  .ai-head .st { font-size: 12.5px; color: var(--muted); margin-top: 3px; display: flex; align-items: center; gap: 6px; }
+  .ai-head .st::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+  .ai-head .x { margin-left: auto; width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--line-2); background: none; color: var(--text-2); display: grid; place-items: center; }
+  .ai-head .x:hover { border-color: var(--gold); color: var(--gold-hi); }
+  .ai-body { flex: 1; overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 12px; scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
+  .msg { max-width: 84%; font-size: 14px; line-height: 1.5; padding: 11px 14px; border-radius: 14px; animation: msgIn .3s ease both; }
+  .msg.bot { align-self: flex-start; background: var(--surface-2); border: 1px solid var(--line); border-bottom-left-radius: 4px; color: var(--text); }
+  .msg.me { align-self: flex-end; background: var(--gold-grad); color: var(--gold-ink); font-weight: 500; border-bottom-right-radius: 4px; }
+  .msg a.inl { display: inline-flex; margin-top: 10px; font-weight: 600; color: var(--gold-hi); border: 1px solid rgba(212,175,55,.5); padding: 6px 10px; border-radius: 6px; font-size: 13px; }
+  .msg a.inl:hover { background: rgba(212,175,55,.1); }
+  .typing { display: flex; gap: 4px; padding: 14px 16px; }
+  .typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); animation: bounce 1.2s infinite; }
+  .typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+  @keyframes bounce { 0%,60%,100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-5px); opacity: 1; } }
+  @keyframes msgIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .ai-quick { padding: 0 18px 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .ai-quick button { font-size: 12.5px; padding: 7px 11px; border-radius: 999px; border: 1px solid rgba(212,175,55,.4); background: rgba(212,175,55,.06); color: var(--text); transition: .2s; }
+  .ai-quick button:hover { background: rgba(212,175,55,.16); border-color: var(--gold); color: var(--gold-hi); }
+  .ai-input { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--line); background: #15120e; }
+  .ai-input input { flex: 1; height: 44px; border-radius: 10px; border: 1px solid var(--line-2); background: #0b0a08; color: var(--text); padding: 0 14px; font: inherit; font-size: 14px; outline: none; }
+  .ai-input input:focus { border-color: var(--gold); }
+  .ai-input input::placeholder { color: var(--muted-2); }
+  .ai-input button { width: 44px; height: 44px; border-radius: 10px; border: 0; background: var(--gold-grad); color: var(--gold-ink); display: grid; place-items: center; }
+  .ai-foot { text-align: center; font-size: 11px; color: var(--muted-2); padding: 0 0 10px; background: #15120e; }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="topbar">
+    <div class="wrap">
+      <a class="phone" href="tel:+380681178311">+380 (68) 117 83 11</a>
+      <div class="msgr">
+        <a href="https://t.me/noytbook_meneger">Telegram</a>
+        <a href="#">Viber</a>
+        <a href="#">WhatsApp</a>
+      </div>
+      <span class="note">Доставка під замовлення <b>1–3 робочі дні</b></span>
+      <a class="tl" href="#">Список бажань</a>
+      <a class="tl" href="#">Порівняти (0)</a>
+      <a class="tl" href="#">Вхід</a>
+    </div>
+  </div>
+
+  <div class="mainbar">
+    <div class="wrap">
+      <a class="logo" href="#">
+        <span class="logo-word">SHOP<span class="gold-text">LAPTOP</span></span>
+        <span class="logo-sub">комп'ютерна техніка</span>
+      </a>
+      <form class="search" onsubmit="return false">
+        <div class="cat">Усі категорії
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+        <input type="text" placeholder="RTX 5060, 32 ГБ, 165 Гц…">
+        <button type="submit">Пошук</button>
+      </form>
+      <div class="hdr-actions">
+        <a class="icon-link" href="#" title="Список бажань">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        </a>
+        <a class="icon-link" href="#" title="Кошик">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+          <span class="badge">0</span>
+        </a>
+        <div class="cart"><span>Кошик</span><b>0 ₴</b></div>
+        <a class="btn btn-gold btn-sm" href="#">Замовити дзвінок</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="navbar">
+  <div class="wrap">
+    <a class="active" href="#">Ноутбуки, ультрабуки</a>
+    <a href="#">Комплектуючі до ПК</a>
+    <a href="#">Периферія</a>
+    <a href="#">Монітори</a>
+    <a href="#">Смартфони</a>
+    <a href="#">Телевізори</a>
+    <a href="#">Приставки, VR</a>
+    <a class="sale push" href="#deals">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9L22 9.3l-5.5 4.7 1.7 7.1L12 17.3 5.8 21.1l1.7-7.1L2 9.3l7.1-.4z"/></svg>Знижки
+    </a>
+    <a href="#delivery">Доставка і оплата</a>
+    <a href="#">Гарантія</a>
+    <a href="#">Контакти</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="wrap hero-inner">
+
+    <!-- Slide 1 -->
+    <div class="slide active" data-stamp="ХІТ ПРОДАЖУ • ХІТ ПРОДАЖУ • ">
+      <div class="copy">
+        <span class="eyebrow"><span class="dot"></span>Хіт продажу · 2-в-1 трансформер</span>
+        <h1>Сила<br><span class="gold-text">без компромісів</span></h1>
+        <p class="model"><b>ASUS ROG Flow Z13</b> — Ryzen AI MAX+ 395, 64 ГБ пам'яті, 1 ТБ SSD та екран 180 Гц у корпусі планшета.</p>
+        <div class="buyrow">
+          <div class="price">113 000 ₴<small>або 9 417 ₴ / міс на 12 платежів</small></div>
+          <div class="ctas">
+            <a class="btn btn-gold" href="#">Купити зараз
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="#">Детальніше</a>
+          </div>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="ring r1"></div><div class="ring r2"></div>
+        <svg class="dash" viewBox="0 0 500 500"><circle cx="250" cy="250" r="248" fill="none" stroke="rgba(212,175,55,.45)" stroke-width="1" stroke-dasharray="2 10"/></svg>
+        <div class="orbit"></div>
+        <div class="disc"><img src="assets/img/laptop-asus-rog-flow-z13-ekran-dotykowy-1024x853.png" alt="ASUS ROG Flow Z13"></div>
+        <div class="stamp"></div>
+        <div class="chip c1"><span>Процесор</span><b>AI MAX+ 395</b></div>
+        <div class="chip c2"><span>Пам'ять</span><b>64 ГБ</b></div>
+        <div class="chip c3"><span>Екран</span><b>13.4″ 180 Гц</b></div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide" data-stamp="ФЛАГМАН • ФЛАГМАН • ФЛАГМАН • ">
+      <div class="copy">
+        <span class="eyebrow"><span class="dot"></span>Флагман · RTX 5090</span>
+        <h1>Чорний. Тонкий.<br><span class="gold-text">Нестримний.</span></h1>
+        <p class="model"><b>Razer Blade 16</b> — RTX 5090, 16″ OLED 240 Гц, 64 ГБ / 2 ТБ. Алюмінієвий корпус завтовшки 17 мм.</p>
+        <div class="buyrow">
+          <div class="price">362 735 ₴<small>або 30 228 ₴ / міс на 12 платежів</small></div>
+          <div class="ctas">
+            <a class="btn btn-gold" href="#">Купити зараз
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="#">Детальніше</a>
+          </div>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="ring r1"></div><div class="ring r2"></div>
+        <svg class="dash" viewBox="0 0 500 500"><circle cx="250" cy="250" r="248" fill="none" stroke="rgba(212,175,55,.45)" stroke-width="1" stroke-dasharray="2 10"/></svg>
+        <div class="orbit"></div>
+        <div class="disc"><img src="assets/img/400px_razer-blade-16-lewy-przod.jpg" alt="Razer Blade 16"></div>
+        <div class="stamp"></div>
+        <div class="chip c1"><span>Відеокарта</span><b>RTX 5090</b></div>
+        <div class="chip c2"><span>Екран</span><b>OLED 240 Гц</b></div>
+        <div class="chip c3"><span>Пам'ять / диск</span><b>64 ГБ / 2 ТБ</b></div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide" data-stamp="ТОП ВИБІР • ТОП ВИБІР • ТОП ВИБІР • ">
+      <div class="copy">
+        <span class="eyebrow"><span class="dot"></span>Топ вибір геймерів</span>
+        <h1>18 дюймів<br><span class="gold-text">чистої переваги</span></h1>
+        <p class="model"><b>ASUS ROG Strix SCAR 18</b> — RTX 5090, 18″ 240 Гц, 64 ГБ / 2 ТБ. Максимум продуктивності для ігор і 3D.</p>
+        <div class="buyrow">
+          <div class="price">297 500 ₴<small>або 24 792 ₴ / міс на 12 платежів</small></div>
+          <div class="ctas">
+            <a class="btn btn-gold" href="#">Купити зараз
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="#">Детальніше</a>
+          </div>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="ring r1"></div><div class="ring r2"></div>
+        <svg class="dash" viewBox="0 0 500 500"><circle cx="250" cy="250" r="248" fill="none" stroke="rgba(212,175,55,.45)" stroke-width="1" stroke-dasharray="2 10"/></svg>
+        <div class="orbit"></div>
+        <div class="disc"><img src="assets/img/laptop-asus-rog-strix-scar-18-g835lxg-u9642w-7-1024x723.jpg" alt="ASUS ROG Strix SCAR 18"></div>
+        <div class="stamp"></div>
+        <div class="chip c1"><span>Відеокарта</span><b>RTX 5090</b></div>
+        <div class="chip c2"><span>Екран</span><b>18″ 240 Гц</b></div>
+        <div class="chip c3"><span>Пам'ять / диск</span><b>64 ГБ / 2 ТБ</b></div>
+      </div>
+    </div>
+
+    <div class="hero-ctrl">
+      <button class="tab active"><div class="bar"><i></i></div><div class="lbl"><em>01</em>ROG Flow Z13</div></button>
+      <button class="tab"><div class="bar"><i></i></div><div class="lbl"><em>02</em>Razer Blade 16</div></button>
+      <button class="tab"><div class="bar"><i></i></div><div class="lbl"><em>03</em>ROG Strix SCAR 18</div></button>
+      <div class="arrows">
+        <button id="prev" aria-label="Попередній"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button id="next" aria-label="Наступний"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- quick pick -->
+<div class="quick">
+  <div class="wrap">
+    <span class="ttl">Швидкий підбір</span>
+    <div class="pills">
+      <a class="pill" href="#">RTX 5060</a>
+      <a class="pill" href="#">RTX 5070 Ti</a>
+      <a class="pill" href="#">RTX 5090</a>
+      <a class="pill" href="#">32 ГБ RAM</a>
+      <a class="pill" href="#">240 Гц</a>
+      <a class="pill" href="#">OLED</a>
+      <a class="pill" href="#">до 60 000 ₴</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>1–3</b><span>дні доставка</span></div>
+      <div class="stat"><b>12 міс</b><span>гарантія</span></div>
+      <div class="stat"><b>9</b><span>категорій</span></div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- ============ DEALS ============ -->
+  <section class="sec" id="deals">
+    <div class="sec-head deals-head">
+      <div>
+        <div class="kicker">Обмежена пропозиція</div>
+        <h2>Знижки <span class="gold-text">тижня</span></h2>
+      </div>
+      <div class="timer">
+        <div class="t-lbl">До кінця<br>акції</div>
+        <div class="cells">
+          <div class="cell"><b id="tD">00</b><span>дн</span></div><span class="sep">:</span>
+          <div class="cell"><b id="tH">00</b><span>год</span></div><span class="sep">:</span>
+          <div class="cell"><b id="tM">00</b><span>хв</span></div><span class="sep">:</span>
+          <div class="cell"><b id="tS">00</b><span>сек</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="deals">
+      <article class="deal-main">
+        <div class="ribbon">ВИГІДНО</div>
+        <div class="top"><span class="pct big">−11%</span><span class="instock">В наявності</span></div>
+        <div class="img"><img src="assets/img/laptop-asus-tuf-gaming-a16-fa608umi-r7325-1-1024x704.jpg" alt="ASUS TUF Gaming A16"></div>
+        <h3>Ноутбук ASUS TUF Gaming A16 FA608UM Ryzen 7 / 16 GB / 1 TB / RTX 5060 / 165 Hz</h3>
+        <div class="specs"><span>RTX 5060</span><span>Ryzen 7</span><span>16 ГБ</span><span>165 Гц</span></div>
+        <div class="pricing">
+          <div>
+            <div class="old">78 900 ₴</div>
+            <div class="new gold-text">70 400 ₴</div>
+            <span class="save">Економія 8 500 ₴</span>
+          </div>
+          <a class="btn btn-gold" href="#" style="margin-left:auto">Забрати зі знижкою</a>
+        </div>
+        <div class="stock">
+          <div class="row"><span>Продано 72%</span><span>Залишилось <b>3 шт</b></span></div>
+          <div class="track"><i style="width:72%"></i></div>
+        </div>
+      </article>
+
+      <div class="deal-list">
+        <article class="deal">
+          <div class="img"><span class="pct">−9%</span><img src="assets/img/600139686_6_i500.jpg" alt="Asus TUF Gaming F16"></div>
+          <div class="body">
+            <span class="brand">Asus</span>
+            <h4>Asus TUF Gaming F16 FX608 i5-14450HX / 32 GB / 1TB / RTX 5050 / 165 Hz</h4>
+            <div class="stock"><div class="track"><i style="width:58%"></i></div></div>
+            <div class="bottom">
+              <div><div class="old">72 500 ₴</div><div class="new">65 965 ₴</div></div>
+              <a class="btn-line" href="#">В кошик</a>
+            </div>
+          </div>
+        </article>
+        <article class="deal">
+          <div class="img"><span class="pct">−8%</span><img src="assets/img/400px_asus-zephyrus-14-ga403gm-przod-p.jpg" alt="ASUS ROG Zephyrus G14"></div>
+          <div class="body">
+            <span class="brand">Asus</span>
+            <h4>ASUS ROG Zephyrus G14 GA403GM Ryzen AI 9 465 / 32GB / 1TB / RTX 5060 OLED</h4>
+            <div class="stock"><div class="track"><i style="width:81%"></i></div></div>
+            <div class="bottom">
+              <div><div class="old">169 900 ₴</div><div class="new">156 440 ₴</div></div>
+              <a class="btn-line" href="#">В кошик</a>
+            </div>
+          </div>
+        </article>
+        <article class="deal">
+          <div class="img"><span class="pct">−9%</span><img src="assets/img/pr_2025_2_11_8_45_8_450_01.png" alt="ASUS ROG Flow Z13 32GB"></div>
+          <div class="body">
+            <span class="brand">Asus</span>
+            <h4>ASUS ROG Flow Z13 Ryzen AI MAX 390 / 32GB / 1TB / 180Hz</h4>
+            <div class="stock"><div class="track"><i style="width:44%"></i></div></div>
+            <div class="bottom">
+              <div><div class="old">112 000 ₴</div><div class="new">101 500 ₴</div></div>
+              <a class="btn-line" href="#">В кошик</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ HITS ============ -->
+<section class="hits-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="kicker">Рейтинг місяця</div>
+        <h2>Хіти <span class="gold-text">продажу</span></h2>
+      </div>
+      <a class="more" href="#">Весь рейтинг
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="hits">
+      <article class="hit first">
+        <span class="rank">01</span>
+        <div class="tagrow"><span class="fire">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M5 16 3 6l5.5 4L12 4l3.5 6L21 6l-2 10H5zm0 2h14v2H5z"/></svg>№1 ПРОДАЖІВ</span></div>
+        <div class="img"><img src="assets/img/600188431_1_i500.jpg" alt="Lenovo Legion Pro 5"></div>
+        <h4>Lenovo Legion Pro 5 16IAX10 Ultra 7 251HX / 16 GB / 512 GB / RTX 5060 / 240 Hz</h4>
+        <div class="rating"><span class="stars">★★★★★</span>4.9 · 38 відгуків</div>
+        <div class="sold">Купили <b>124</b> рази за місяць</div>
+        <div class="bottom"><span class="new">83 100 ₴</span>
+          <button class="cart-btn" aria-label="В кошик"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></button>
+        </div>
+      </article>
+      <article class="hit">
+        <span class="rank">02</span>
+        <div class="tagrow"><span class="fire">ХІТ</span></div>
+        <div class="img"><img src="assets/img/lenovo-loq-15irx10-15-6-144hz-i7-13650hx-16gb-ram-512gb-dysk-ssd-rtx5060-dlss4-win11-szary167445610273_5-2-1024x863.jpg" alt="Lenovo LOQ 15IRX10"></div>
+        <h4>Lenovo LOQ 15IRX10 15,6″ 144Hz i7-13650HX 16GB/512GB RTX5060 Win11</h4>
+        <div class="rating"><span class="stars">★★★★★</span>4.8 · 51 відгук</div>
+        <div class="sold">Купили <b>97</b> разів за місяць</div>
+        <div class="bottom"><span class="new">60 990 ₴</span>
+          <button class="cart-btn" aria-label="В кошик"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></button>
+        </div>
+      </article>
+      <article class="hit">
+        <span class="rank">03</span>
+        <div class="tagrow"><span class="fire">ХІТ</span></div>
+        <div class="img"><img src="assets/img/pr_2026_4_23_12_48_47_614_00.jpg" alt="ASUS ROG Zephyrus G14 RTX5070Ti"></div>
+        <h4>ASUS ROG Zephyrus G14 RTX 5070 Ti / 32 GB / 1 TB / 14″ 120 Hz</h4>
+        <div class="rating"><span class="stars">★★★★★</span>4.9 · 22 відгуки</div>
+        <div class="sold">Купили <b>64</b> рази за місяць</div>
+        <div class="bottom"><span class="new">185 500 ₴</span>
+          <button class="cart-btn" aria-label="В кошик"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></button>
+        </div>
+      </article>
+      <article class="hit">
+        <span class="rank">04</span>
+        <div class="tagrow"><span class="fire">ХІТ</span></div>
+        <div class="img"><img src="assets/img/laptop-asus-rog-strix-scar-18-g835lxg-u9642w-7-1024x723.jpg" alt="ASUS ROG Strix SCAR 18"></div>
+        <h4>ASUS ROG Strix SCAR 18 RTX 5090 / 64 GB / 2 TB / 18″ 240 Hz</h4>
+        <div class="rating"><span class="stars">★★★★☆</span>4.7 · 15 відгуків</div>
+        <div class="sold">Купили <b>41</b> раз за місяць</div>
+        <div class="bottom"><span class="new">297 500 ₴</span>
+          <button class="cart-btn" aria-label="В кошик"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <!-- ============ NEW ARRIVALS ============ -->
+  <section class="sec">
+    <div class="sec-head">
+      <div>
+        <div class="kicker">12 позицій</div>
+        <h2>Новинки складу</h2>
+      </div>
+      <a class="more" href="#">Усі ноутбуки
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="grid4">
+      <article class="card">
+        <div class="img"><span class="new-tag">NEW</span><img loading="lazy" src="assets/img/lenovo-loq-15irx10-15-6-144hz-i7-13650hx-16gb-ram-512gb-dysk-ssd-rtx5060-dlss4-win11-szary167445610273_5-2-1024x863.jpg" alt="Lenovo LOQ 15IRX10"></div>
+        <span class="brand">Lenovo</span>
+        <h4>Ноутбук Lenovo LOQ 15IRX10 15,6″ 144Hz i7-13650HX 16GB/512GB RTX5060 Win11</h4>
+        <div class="specs"><span>RTX 5060</span><span>16 ГБ</span><span>144 Гц</span></div>
+        <div class="bottom"><span class="new">60 990 ₴</span><a class="btn-line" href="#">В кошик</a></div>
+      </article>
+      <article class="card">
+        <div class="img"><span class="new-tag">NEW</span><img loading="lazy" src="assets/img/600139686_6_i500.jpg" alt="Asus TUF Gaming F16"></div>
+        <span class="brand">Asus</span>
+        <h4>Ноутбук Asus TUF Gaming F16 FX608 i5-14450HX / 32 GB / 1TB / RTX 5050 / 165 Hz</h4>
+        <div class="specs"><span>RTX 5050</span><span>32 ГБ</span><span>165 Гц</span></div>
+        <div class="bottom"><span class="new">65 965 ₴</span><a class="btn-line" href="#">В кошик</a></div>
+      </article>
+      <article class="card">
+        <div class="img"><span class="new-tag">NEW</span><img loading="lazy" src="assets/img/600188431_1_i500.jpg" alt="Lenovo Legion Pro 5"></div>
+        <span class="brand">Lenovo</span>
+        <h4>Ноутбук Lenovo Legion Pro 5 16IAX10 Ultra 7 251HX / 16 GB / 512 GB / RTX 5060 / 240 Hz</h4>
+        <div class="specs"><span>RTX 5060</span><span>16 ГБ</span><span>240 Гц</span></div>
+        <div class="bottom"><span class="new">83 100 ₴</span><a class="btn-line" href="#">В кошик</a></div>
+      </article>
+      <article class="card">
+        <div class="img"><span class="new-tag">NEW</span><img loading="lazy" src="assets/img/400px_asus-zephyrus-14-ga403gm-przod-p.jpg" alt="ASUS ROG Zephyrus G14"></div>
+        <span class="brand">Asus</span>
+        <h4>Ноутбук ASUS ROG Zephyrus G14 GA403GM Ryzen AI 9 465/32GB/1TB/RTX5060 OLED</h4>
+        <div class="specs"><span>RTX 5060</span><span>32 ГБ</span><span>OLED</span></div>
+        <div class="bottom"><span class="new">156 440 ₴</span><a class="btn-line" href="#">В кошик</a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ COMPARE ============ -->
+  <section class="sec">
+    <div class="compare">
+      <div class="head">
+        <h3>Порівняння топових конфігурацій</h3>
+        <span>Три машини, які найчастіше беруть під важкі задачі</span>
+      </div>
+      <div class="ctable">
+        <div>Модель</div>
+        <div class="h best">Razer Blade 16 <span class="crown">★ ТОП</span></div>
+        <div class="h">ROG Strix SCAR 18</div>
+        <div class="h">Zephyrus G14</div>
+
+        <div>Відеокарта</div>
+        <div class="m best">RTX 5090</div><div class="m">RTX 5090</div><div class="m">RTX 5070 Ti</div>
+
+        <div>Екран</div>
+        <div class="m best">16″ OLED 240 Гц</div><div class="m">18″ 240 Гц</div><div class="m">14″ 120 Гц</div>
+
+        <div>Пам'ять / диск</div>
+        <div class="m best">64 ГБ / 2 ТБ</div><div class="m">64 ГБ / 2 ТБ</div><div class="m">32 ГБ / 1 ТБ</div>
+
+        <div class="last">Ціна</div>
+        <div class="p best">362 735 ₴</div><div class="p">297 500 ₴</div><div class="p">185 500 ₴</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CATEGORIES ============ -->
+  <section class="sec">
+    <div class="sec-head">
+      <div>
+        <div class="kicker">Каталог</div>
+        <h2>Ми пропонуємо</h2>
+      </div>
+    </div>
+    <div class="cats">
+      <a class="cat-link" href="#">Ноутбуки, ультрабуки<span>312</span></a>
+      <a class="cat-link" href="#">Комплектуючі до ПК<span>184</span></a>
+      <a class="cat-link" href="#">Комп'ютерна периферія<span>96</span></a>
+      <a class="cat-link" href="#">Монітори<span>73</span></a>
+      <a class="cat-link" href="#">Смартфони та телефони<span>58</span></a>
+      <a class="cat-link" href="#">Телевізори<span>41</span></a>
+      <a class="cat-link" href="#">Приставки, 3D та VR<span>29</span></a>
+      <a class="cat-link" href="#">Екшн-камери, квадрокоптери<span>34</span></a>
+      <a class="cat-link" href="#">Фото- та відео-техніка<span>47</span></a>
+    </div>
+  </section>
+
+  <!-- ============ DELIVERY & PAYMENT ============ -->
+  <section class="sec" id="delivery">
+    <div class="sec-head">
+      <div>
+        <div class="kicker">Покупцеві</div>
+        <h2>Доставка і оплата</h2>
+      </div>
+      <a class="more" href="#">Детальні умови
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="delivery">
+      <div class="dcard">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <h4>Доставка 1–3 робочі дні</h4>
+        <ul><li>Нова Пошта — відділення або поштомат</li><li>Кур'єрська доставка за адресою</li><li>Товари під замовлення</li></ul>
+      </div>
+      <div class="dcard">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg></div>
+        <h4>Способи оплати</h4>
+        <ul><li>Карткою онлайн</li><li>Безготівковий рахунок (ФОП / ТОВ)</li><li>Накладений платіж</li></ul>
+      </div>
+      <div class="dcard">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h4>Оплата частинами</h4>
+        <p>До 12 платежів без переплат. Офіційна гарантія 12 місяців на всю техніку.</p>
+      </div>
+      <div class="notice">
+        <span class="lbl">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>УВАГА
+        </span>
+        <h4>Комісія за накладений платіж</h4>
+        <p>З <b>29.04.2026</b> при оплаті замовлення накладеним платежем застосовується додаткова комісія у розмірі <b>1%</b> від суми.</p>
+        <a href="#">Як оплатити без комісії →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="sec">
+    <div class="cta">
+      <div>
+        <h2>Не знайшли потрібну <span class="gold-text">модифікацію?</span></h2>
+        <p>Напишіть конфігурацію, яка вам потрібна — менеджер перевірить наявність у постачальників і повернеться з ціною та терміном доставки.</p>
+        <div class="row">
+          <a class="btn btn-gold" href="https://t.me/noytbook_meneger">Telegram</a>
+          <a class="btn btn-ghost" href="#">Viber</a>
+          <a class="btn btn-ghost" href="#">WhatsApp</a>
+        </div>
+      </div>
+      <div class="side">
+        <div class="ph">+380 (68) 117 83 11</div>
+        <div class="hrs">Пн–Сб, 09:00–19:00</div>
+        <a class="btn btn-gold" href="#">Замовити дзвінок</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap cols">
+    <div>
+      <span class="logo-word">SHOP<span class="gold-text">LAPTOP</span></span>
+      <p>Інтернет-магазин комп'ютерної техніки. Доставка товарів під замовлення 1–3 робочі дні.</p>
+    </div>
+    <div class="col"><div class="t">Магазин</div><a href="#">Ноутбуки, ультрабуки</a><a href="#">Новинки</a><a href="#">Хіт продажу</a><a href="#deals">Розпродаж</a></div>
+    <div class="col"><div class="t">Покупцеві</div><a href="#delivery">Доставка і оплата</a><a href="#">Гарантія та повернення</a><a href="#">Відгуки</a><a href="#">Про нас</a></div>
+    <div class="col"><div class="t">Контакти</div><a class="mono" href="tel:+380681178311">+380 (68) 117 83 11</a><a href="https://t.me/noytbook_meneger">Telegram</a><a href="#">Viber</a><a href="#">WhatsApp</a></div>
+  </div>
+  <div class="wrap copy"><span>Shop Laptop © 2026 — Всі права захищені.</span><span>Пн–Сб, 09:00–19:00</span></div>
+</footer>
+
+<!-- ============ AI SUPPORT (stub) ============ -->
+<div class="ai-panel" id="aiPanel" role="dialog" aria-label="Підтримка">
+  <div class="ai-head">
+    <div class="ai-ava">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8zM19 14l.9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9zM5 15l.7 1.3L7 17l-1.3.7L5 19l-.7-1.3L3 17l1.3-.7z"/></svg>
+    </div>
+    <div>
+      <div class="nm">Помічник ShopLaptop <span class="beta">AI · BETA</span></div>
+      <div class="st">Онлайн · відповідає одразу</div>
+    </div>
+    <button class="x" id="aiClose" aria-label="Закрити"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="ai-body" id="aiBody"></div>
+  <div class="ai-quick" id="aiQuick">
+    <button data-q="pick">Підібрати ноутбук</button>
+    <button data-q="delivery">Доставка і оплата</button>
+    <button data-q="order">Статус замовлення</button>
+    <button data-q="manager">Зв'язатися з менеджером</button>
+  </div>
+  <form class="ai-input" id="aiForm">
+    <input id="aiInput" type="text" placeholder="Напишіть питання…" autocomplete="off">
+    <button type="submit" aria-label="Надіслати"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
+  </form>
+  <div class="ai-foot">Штучний інтелект у розробці · зараз відповідає демо-режим</div>
+</div>
+
+<div class="ai-fab" id="aiFab">
+  <div class="ai-hint" id="aiHint">Потрібна допомога з вибором? <b>Запитайте помічника</b></div>
+  <button class="ai-btn" id="aiBtn" aria-label="Відкрити підтримку">
+    <svg class="i-chat" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 8V5.2"/><circle cx="12" cy="4" r="1.3" fill="currentColor" stroke="none"/>
+      <rect x="5" y="8" width="14" height="11" rx="4"/>
+      <rect x="2.6" y="11.5" width="2.4" height="4" rx="1.1"/><rect x="19" y="11.5" width="2.4" height="4" rx="1.1"/>
+      <g class="eyes" fill="currentColor" stroke="none"><circle cx="9.4" cy="12.8" r="1.35"/><circle cx="14.6" cy="12.8" r="1.35"/></g>
+      <path d="M10 15.8q2 1.4 4 0"/>
+      <path d="M20 2.5l.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5z" fill="currentColor" stroke="none"/>
+    </svg>
+    <svg class="i-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    <span class="ai-dot"></span>
+  </button>
+</div>
+
+<script>
+/* ---------- Hero slider ---------- */
+(function () {
+  const DUR = 7000;
+  const slides = [...document.querySelectorAll('.slide')];
+  const tabs = [...document.querySelectorAll('.tab')];
+  let idx = 0, timer;
+
+  // rotating circular stamp per slide
+  slides.forEach((s, i) => {
+    const txt = s.dataset.stamp;
+    s.querySelector('.stamp').innerHTML =
+      `<svg viewBox="0 0 140 140"><defs><path id="cp${i}" d="M70,70 m-56,0 a56,56 0 1,1 112,0 a56,56 0 1,1 -112,0"/></defs>
+        <circle cx="70" cy="70" r="68" fill="#0d0b08" stroke="rgba(212,175,55,.55)"/>
+        <text font-family="IBM Plex Mono" font-size="11.5" font-weight="600" letter-spacing="3" fill="#f0cc63"><textPath href="#cp${i}">${txt}</textPath></text></svg>
+       <div class="core"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9L22 9.3l-5.5 4.7 1.7 7.1L12 17.3 5.8 21.1l1.7-7.1L2 9.3l7.1-.4z"/></svg></div>`;
+  });
+
+  function go(n) {
+    idx = (n + slides.length) % slides.length;
+    slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+    tabs.forEach((t, i) => {
+      t.classList.remove('active');
+      const bar = t.querySelector('i'); bar.style.animation = 'none'; bar.offsetWidth; bar.style.animation = '';
+      if (i === idx) t.classList.add('active');
+    });
+    clearTimeout(timer);
+    timer = setTimeout(() => go(idx + 1), DUR);
+  }
+  document.documentElement.style.setProperty('--dur', DUR / 1000 + 's');
+  tabs.forEach((t, i) => t.addEventListener('click', () => go(i)));
+  document.getElementById('prev').onclick = () => go(idx - 1);
+  document.getElementById('next').onclick = () => go(idx + 1);
+  go(0);
+})();
+
+/* ---------- Deals countdown (to Sunday 23:59:59) ---------- */
+(function () {
+  const pad = n => String(n).padStart(2, '0');
+  function end() {
+    const d = new Date(); const e = new Date(d);
+    e.setDate(d.getDate() + ((7 - d.getDay()) % 7)); e.setHours(23, 59, 59, 999);
+    return e;
+  }
+  let target = end();
+  function tick() {
+    let ms = target - Date.now();
+    if (ms <= 0) { target = new Date(Date.now() + 7 * 864e5); ms = target - Date.now(); }
+    const s = Math.floor(ms / 1000);
+    tD.textContent = pad(Math.floor(s / 86400));
+    tH.textContent = pad(Math.floor(s % 86400 / 3600));
+    tM.textContent = pad(Math.floor(s % 3600 / 60));
+    tS.textContent = pad(s % 60);
+  }
+  tick(); setInterval(tick, 1000);
+})();
+
+/* ---------- AI support widget (stub) ---------- */
+(function () {
+  const fab = document.getElementById('aiFab');
+  const body = document.getElementById('aiBody');
+  const input = document.getElementById('aiInput');
+  const hint = document.getElementById('aiHint');
+  const TG = 'https://t.me/noytbook_meneger';
+  let greeted = false;
+
+  const CANNED = {
+    pick: 'Із задоволенням допоможу! Скоро я зможу підбирати ноутбук під ваші задачі та бюджет. Поки що скористайтесь <b>швидким підбором</b> на головній або напишіть менеджеру.',
+    delivery: 'Доставляємо Новою Поштою за <b>1–3 робочі дні</b>. Оплата: карткою, безготівково або накладеним платежем (<b>+1% комісії</b> з 29.04.2026).',
+    order: 'Перевірка статусу замовлення з\'явиться тут найближчим часом. Зараз уточнити статус може менеджер у Telegram.',
+    manager: 'Менеджер на зв\'язку Пн–Сб, 09:00–19:00. Телефон: <b>+380 (68) 117 83 11</b>.'
+  };
+  const LABELS = { pick: 'Підібрати ноутбук', delivery: 'Доставка і оплата', order: 'Статус замовлення', manager: 'Зв\'язатися з менеджером' };
+
+  function add(html, who) {
+    const m = document.createElement('div');
+    m.className = 'msg ' + who; m.innerHTML = html;
+    body.appendChild(m); body.scrollTop = body.scrollHeight;
+  }
+  function typing() {
+    const t = document.createElement('div');
+    t.className = 'msg bot typing'; t.innerHTML = '<i></i><i></i><i></i>';
+    body.appendChild(t); body.scrollTop = body.scrollHeight; return t;
+  }
+  const tgBtn = `<br><a class="inl" href="${TG}" target="_blank" rel="noopener">Написати в Telegram →</a>`;
+
+  // Точка підключення ШІ: замініть тіло цієї функції на запит до вашого бекенду.
+  async function askAssistant(text, intent) {
+    await new Promise(r => setTimeout(r, 900 + Math.random() * 500));
+    if (intent && CANNED[intent]) return CANNED[intent] + (intent !== 'delivery' ? tgBtn : '');
+    return 'Дякую за питання! Я ще навчаюсь — <b>штучний інтелект підключимо найближчим часом</b>. Поки що менеджер швидко відповість вам у месенджері.' + tgBtn;
+  }
+
+  async function send(text, intent) {
+    if (!text.trim()) return;
+    add(text.replace(/</g, '&lt;'), 'me');
+    const t = typing();
+    const reply = await askAssistant(text, intent);
+    t.remove(); add(reply, 'bot');
+  }
+
+  function open(state) {
+    fab.parentElement.classList.toggle('ai-open', state);
+    document.body.classList.toggle('ai-open', state);
+    hint.classList.remove('show');
+    if (state && !greeted) {
+      greeted = true;
+      add('Вітаю! 👋 Я помічник <b>ShopLaptop</b>. Допоможу з вибором техніки, доставкою та оплатою. Чим можу допомогти?', 'bot');
+    }
+    if (state) setTimeout(() => input.focus(), 250);
+  }
+
+  document.getElementById('aiBtn').onclick = () => open(!document.body.classList.contains('ai-open'));
+  document.getElementById('aiClose').onclick = () => open(false);
+  document.getElementById('aiQuick').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (b) send(LABELS[b.dataset.q], b.dataset.q);
+  });
+  document.getElementById('aiForm').addEventListener('submit', e => {
+    e.preventDefault(); const v = input.value; input.value = ''; send(v);
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') open(false); });
+  setTimeout(() => { if (!document.body.classList.contains('ai-open')) hint.classList.add('show'); }, 3500);
+  setTimeout(() => hint.classList.remove('show'), 11000);
+})();
+</script>
+</body>
+</html>
