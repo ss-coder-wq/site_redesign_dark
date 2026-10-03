@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кошик — ShopLaptop</title>
+<meta name="description" content="ShopLaptop — інтернет-магазин комп’ютерної техніки">
+<link href="assets/fonts/fonts.css" rel="stylesheet">
+<link href="assets/css/site.css" rel="stylesheet">
+</head>
+<body>
+<header>
+  <div class="topbar">
+    <div class="wrap">
+      <a class="phone" href="tel:+380681178311">+380 (68) 117 83 11</a>
+      <div class="msgr">
+        <a href="https://t.me/noytbook_meneger">Telegram</a>
+        <a href="#">Viber</a>
+        <a href="#">WhatsApp</a>
+      </div>
+      <span class="note">Доставка під замовлення <b>1–3 робочі дні</b></span>
+      <a class="tl" href="my-account.html" data-auth-top>Вхід</a>
+    </div>
+  </div>
+  <div class="mainbar">
+    <div class="wrap">
+      <a class="logo" href="index.html">
+        <span class="logo-word">SHOP<span class="gold-text">LAPTOP</span></span>
+        <span class="logo-sub">комп'ютерна техніка</span>
+      </a>
+      <form class="search" action="shop.html">
+        <div class="cat">Усі категорії</div>
+        <input type="text" name="s" placeholder="Пошук товарів: RTX 5060, 32 ГБ, 165 Гц…">
+        <button type="submit">Пошук</button>
+      </form>
+      <div class="hdr-actions">
+        <a class="icon-link" href="spysok-bazhan.html" title="Список бажань"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg><span class="badge" data-wish-count>2</span></a>
+        <a class="icon-link" href="porivniaty.html" title="Порівняння"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10M12 3v18M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg><span class="badge" data-compare-count>2</span></a>
+        <a class="icon-link" href="cart.html" title="Кошик"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><span class="badge" data-cart-count>0</span></a>
+        <a class="cart" href="cart.html"><span>Кошик</span><b data-cart-sum>0 ₴</b></a>
+        <div class="acct" data-acct>
+          <a class="icon-link acct-out" href="my-account.html" title="Увійти"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+          <div class="acct-in">
+            <button class="acct-chip" type="button"><span class="acct-ava" data-acct-ini>К</span><span class="acct-txt"><b data-acct-name>Мій кабінет</b><em data-acct-phone></em></span></button>
+            <div class="acct-menu">
+              <div class="acct-menu-head"><span class="acct-ava big" data-acct-ini>К</span><span><b data-acct-name>Мій кабінет</b><em data-acct-phone></em></span></div>
+              <a href="my-account.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Мій кабінет</a>
+              <a href="my-account.html#orders"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.7z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg> Мої замовлення</a>
+              <a href="spysok-bazhan.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg> Список бажань</a>
+              <button type="button" data-logout><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg> Вийти</button>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-gold btn-sm" data-callback>Замовити дзвінок</button>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="navbar">
+  <div class="wrap">
+    <a href="index.html">Головна</a><a href="shop.html">Ноутбуки, ультрабуки</a><a href="pro-nas.html">Про нас</a><a href="dostavka-i-oplata.html">Доставка і оплата</a><a href="harantiia-ta-povernennia.html">Гарантія та повернення</a><a href="vidhuky.html">Відгуки</a><a href="kontakty.html">Контакти</a>
+    <a class="sale push" href="index.html#deals"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9L22 9.3l-5.5 4.7 1.7 7.1L12 17.3 5.8 21.1l1.7-7.1L2 9.3l7.1-.4z"/></svg>Знижки</a>
+  </div>
+</nav>
+<section class="phead">
+  <div class="wrap">
+    <nav class="crumbs"><a href="index.html">Головна</a><i>/</i><span>Кошик</span></nav>
+    <div class="phead-row">
+      <div>
+        <div class="kicker">Ваше замовлення</div>
+        <h1>Кошик</h1>
+        
+      </div>
+      <div class="steps"><div class="step on"><i>1</i><span>Кошик</span></div><div class="step"><i>2</i><span>Оформлення замовлення</span></div><div class="step"><i>3</i><span>Замовлення виконане</span></div></div>
+    </div>
+  </div>
+</section>
+<main class="wrap">
+  <div class="cart-grid" id="cartGrid">
+    <section class="panel">
+      <div class="cart-head"><span>Товар</span><span>Кількість</span><span>Сума</span></div>
+      <div class="cart-row" data-price="61990">
+        <a class="cr-img" href="product.html"><img src="assets/img/products/pr_2025_10_16_8_56_18_877_01-1-300x300.jpg" alt=""></a>
+        <div class="cr-name"><a href="product.html">Ноутбук Gigabyte GAMING A18 Ryzen 7 260/16GB/1TB RTX5060 165Hz 3VHK3EEC94SD</a><span class="sku">Код: <b>3VHK3EEC94SD</b></span><span class="st order">Під замовлення 1–3 дні</span></div>
+        <div class="qty"><button data-qty="-1">−</button><input value="1" readonly><button data-qty="1">+</button></div>
+        <div class="cr-sum">61 990 ₴</div>
+        <button class="cr-x" data-remove title="Видалити"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div><div class="cart-row" data-price="44800">
+        <a class="cr-img" href="product.html"><img src="assets/img/products/asus-laptop-asus-f16-c5-16-512-3050-w11191218243201_5-300x300.jpg" alt=""></a>
+        <div class="cr-name"><a href="product.html">Ноутбук ASUS TUF Gaming F16 16″ 144Hz Core 5 210H 16GB/512GB RTX3050 Win11 FX607VJB-RL143W</a><span class="sku">Код: <b>FX607VJB-RL143W</b></span><span class="st order">Під замовлення 1–3 дні</span></div>
+        <div class="qty"><button data-qty="-1">−</button><input value="1" readonly><button data-qty="1">+</button></div>
+        <div class="cr-sum">44 800 ₴</div>
+        <button class="cr-x" data-remove title="Видалити"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div class="cart-foot"><a class="inl-link" href="shop.html">← Повернутись в магазин</a></div>
+    </section>
+    <aside class="summary">
+      <h3>Разом</h3>
+      <div class="sum-row"><span>Товари (<b data-items>2</b>)</span><b data-subtotal>106 790 ₴</b></div>
+      <div class="sum-row"><span>Доставка</span><span class="muted">за тарифами перевізника</span></div>
+      <div class="sum-total"><span>До сплати</span><b data-total>106 790 ₴</b></div>
+      <a class="btn btn-gold btn-block" href="checkout.html">Оформити замовлення <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <div class="fee-note mini">
+      <div class="fn-ic"><span>1%</span></div>
+      <div class="fn-body">
+        <div class="fn-top"><b>Комісія за накладений платіж</b><span class="fn-date">з 29.04.2026</span></div>
+        <p>При оплаті при отриманні додається <b>1%</b> від суми замовлення. Оплата на карту чи банківським переказом — без комісії.</p>
+      </div>
+      <a class="fn-link" href="dostavka-i-oplata.html#payment">Оплатити без комісії <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    </aside>
+  </div>
+  <div class="empty" id="cartEmpty" hidden>
+    <div class="empty-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div>
+    <h3>Ваш кошик порожній</h3>
+    <p>Додайте товари з каталогу, і вони з'являться тут.</p>
+    <a class="btn btn-gold" href="shop.html">Повернутись в магазин</a>
+  </div>
+</main>
+<section class="wrap sec">
+  <div class="cta">
+    <div>
+      <h2>Не знайшли модель чи <span class="gold-text">модифікацію?</span></h2>
+      <p>Напишіть, яка конфігурація вас цікавить — <b>ми вам допоможемо</b>: перевіримо наявність у постачальників і повернемось з ціною та терміном доставки.</p>
+      <div class="row">
+        <a class="btn btn-gold" href="https://t.me/noytbook_meneger">Telegram</a>
+        <a class="btn btn-ghost" href="#">Viber</a>
+        <a class="btn btn-ghost" href="#">WhatsApp</a>
+      </div>
+    </div>
+    <div class="side">
+      <div class="ph">+380 (68) 117 83 11</div>
+      <div class="hrs">Пн–Пт 10:00–19:00, Сб 10:00–14:00</div>
+      <button class="btn btn-gold" data-callback>Замовити дзвінок</button>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap cols">
+    <div>
+      <span class="logo-word">SHOP<span class="gold-text">LAPTOP</span></span>
+      <p>Інтернет-магазин сучасної, виключно оригінальної комп'ютерної техніки та електроніки. Доставка товарів під замовлення 1–3 робочі дні.</p>
+    </div>
+    <div class="col"><div class="t">Магазин</div><a href="shop.html">Ноутбуки, ультрабуки</a><a href="shop.html">Новинки</a><a href="shop.html">Хіт продажу</a><a href="shop.html">Розпродаж</a></div>
+    <div class="col"><div class="t">Покупцеві</div><a href="dostavka-i-oplata.html">Доставка і оплата</a><a href="harantiia-ta-povernennia.html">Гарантія та повернення</a><a href="vidhuky.html">Відгуки</a><a href="pro-nas.html">Про нас</a><a href="kontakty.html">Контакти</a></div>
+    <div class="col"><div class="t">Контакти</div><a class="mono" href="tel:+380681178311">+380 (68) 117 83 11</a><a href="mailto:internetshop.laptop@gmail.com">internetshop.laptop@gmail.com</a><a href="https://t.me/noytbook_meneger">Telegram</a><a href="#">Viber</a><a href="#">WhatsApp</a></div>
+  </div>
+  <div class="wrap copy"><span>Shop Laptop © 2026 — Всі права захищені.</span><span>Пн–Пт 10:00–19:00, Сб 10:00–14:00</span></div>
+</footer>
+<!-- Callback modal -->
+<div class="modal" id="callback" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-label="Замовити дзвінок">
+    <button class="modal-x" data-close aria-label="Закрити"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div class="modal-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></div>
+    <h3>Замовити дзвінок консультанта</h3>
+    <p>Залиште свої дані і ми вам зателефонуємо найближчим часом.</p>
+    <form class="form" data-demo-form="Дякуємо! Менеджер зателефонує вам найближчим часом.">
+      <label class="fld"><span>Ім'я</span><input type="text" required placeholder="Ваше ім'я"></label>
+      <label class="fld"><span>Телефон</span><input type="tel" required placeholder="+380 (__) ___ __ __"></label>
+      <button class="btn btn-gold btn-block" type="submit">Надіслати</button>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- AI support (stub) -->
+<div class="ai-panel" id="aiPanel" role="dialog" aria-label="Підтримка">
+  <div class="ai-head">
+    <div class="ai-ava"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8zM19 14l.9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9zM5 15l.7 1.3L7 17l-1.3.7L5 19l-.7-1.3L3 17l1.3-.7z"/></svg></div>
+    <div>
+      <div class="nm">Помічник ShopLaptop <span class="beta">AI · BETA</span></div>
+      <div class="st">Онлайн · відповідає одразу</div>
+    </div>
+    <button class="x" id="aiClose" aria-label="Закрити"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="ai-body" id="aiBody"></div>
+  <div class="ai-quick" id="aiQuick">
+    <button data-q="pick">Підібрати ноутбук</button>
+    <button data-q="delivery">Доставка і оплата</button>
+    <button data-q="order">Статус замовлення</button>
+    <button data-q="manager">Зв'язатися з менеджером</button>
+  </div>
+  <form class="ai-input" id="aiForm">
+    <input id="aiInput" type="text" placeholder="Напишіть питання…" autocomplete="off">
+    <button type="submit" aria-label="Надіслати"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
+  </form>
+  <div class="ai-foot">Помічник ShopLaptop · відповідає цілодобово</div>
+</div>
+<div class="ai-fab" id="aiFab">
+  <div class="ai-hint" id="aiHint">Потрібна допомога з вибором? <b>Запитайте помічника</b></div>
+  <button class="ai-btn" id="aiBtn" aria-label="Відкрити підтримку">
+    <svg class="i-chat" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 8V5.2"/><circle cx="12" cy="4" r="1.3" fill="currentColor" stroke="none"/>
+      <rect x="5" y="8" width="14" height="11" rx="4"/>
+      <rect x="2.6" y="11.5" width="2.4" height="4" rx="1.1"/><rect x="19" y="11.5" width="2.4" height="4" rx="1.1"/>
+      <g class="eyes" fill="currentColor" stroke="none"><circle cx="9.4" cy="12.8" r="1.35"/><circle cx="14.6" cy="12.8" r="1.35"/></g>
+      <path d="M10 15.8q2 1.4 4 0"/>
+      <path d="M20 2.5l.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5z" fill="currentColor" stroke="none"/>
+    </svg>
+    <svg class="i-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    <span class="ai-dot"></span>
+  </button>
+</div>
+<script src="assets/js/site.js"></script>
+</body>
+</html>
